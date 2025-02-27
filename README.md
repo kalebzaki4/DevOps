@@ -1,4 +1,4 @@
-# DevOps Lab 🚀
+# DevOps 🚀
 
 Este repositório documenta minha jornada de aprendizado em DevOps, com foco na utilização de uma máquina virtual (VM) rodando Ubuntu. Aqui, compartilho configurações, scripts e anotações sobre administração de sistemas, automação e segurança.
 
