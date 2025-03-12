@@ -1,21 +1,28 @@
-const express = require('express')
-const { ApolloServer, graphql, gql } = require('apollo-server-express')
+const express = require('express');
+const { ApolloServer, gql } = require('apollo-server-express');
 
 const schema = gql(`
   type Query {
-     olaMundo: String!
+    OlaMundo: String!
   }
-  `);
+`);
 
-const resolver = {
+const resolvers = {
     Query: {
-        olaMundo: () => 'Olá Mundo! Nossa primeira consulta!'
-    }
+        olaMundo: () => 'Olá Mundo! Nossa primeira consulta!',
+    },
 };
 
-const server = new ApolloServer({ typeDefs: schema, resolvers: resolver });
+async function startServer() {
+    const server = new ApolloServer({ typeDefs: schema, resolvers });
+    await server.start(); 
 
-const app = express()
-server.applyMiddleware({ app })
+    const app = express();
+    server.applyMiddleware({ app });
 
-app.listen({ port: 4000 }, () => console.log(`Server rodando no http://localhost:4000${server.graphqlPath}`))
+    app.listen({ port: 4000 }, () =>
+        console.log(`🚀 Servidor rodando em http://localhost:4000${server.graphqlPath}`)
+    );
+}
+
+startServer();
